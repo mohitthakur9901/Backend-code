@@ -12,3 +12,35 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+
+model User {
+  id                     Int       @id @default(autoincrement())
+
+  profilePicture         String?
+  firstName              String
+  lastName               String?
+  email                  String    @unique
+  username               String?
+  studentId              String?
+  phone                  String    @unique
+  dateOfBirth            DateTime?
+
+  password               String
+
+  fieldOfStudy           String[]
+  fieldOfInterest        String[]
+
+  collegeName            String?
+  yearOfJoining          Int?
+  yearOfPassing          Int?
+
+  isVerified             Boolean   @default(false)
+  verificationToken      String?
+  verificationTokenExpiry DateTime?
+
+  isDeleted              Boolean   @default(false)
+
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
